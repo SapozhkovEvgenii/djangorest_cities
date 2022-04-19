@@ -5,20 +5,23 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, IsAuthenticated
 from city.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
-
+from rest_framework.authentication import TokenAuthentication
+from city.utils import CityAPIListPagination
 
 
 class CityAPIList(generics.ListCreateAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
+    pagination_class = CityAPIListPagination
 
 
-class CityAPIUpdate(generics.UpdateAPIView):
+
+class CityAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
-    permission_classes = (IsOwnerOrReadOnly, )
-    # authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
+    authentication_classes = (TokenAuthentication, )
 
 
 class CityAPIDetail(generics.RetrieveUpdateDestroyAPIView):

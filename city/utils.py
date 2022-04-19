@@ -3,6 +3,7 @@ from city.serializers import CitySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.forms import model_to_dict
+from rest_framework.pagination import PageNumberPagination
 
 
 class CityApiView(APIView):
@@ -43,3 +44,10 @@ class CityApiView(APIView):
             return Response({'error': "Object does not exists"})
         instance.delete()
         return Response({"info": "delete post " + title}) 
+
+
+class CityAPIListPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 15
+
