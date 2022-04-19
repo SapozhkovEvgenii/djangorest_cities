@@ -1,6 +1,6 @@
-from email.policy import default
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 class City(models.Model):
@@ -11,6 +11,7 @@ class City(models.Model):
     updated = models.DateField(auto_now=True, verbose_name="Time updated")
     is_published = models.BooleanField(default=True)
     continent = models.ForeignKey("Continent", on_delete=models.PROTECT, related_name="cities")
+    user = models.ForeignKey(User, verbose_name="User", on_delete=models.CASCADE )
 
     def __str__(self):
         return self.title

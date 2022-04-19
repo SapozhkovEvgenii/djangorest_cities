@@ -8,7 +8,7 @@ class ContinentAdmin(admin.ModelAdmin):
 
 
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'created')
+    list_display = ('id', 'title', 'created', 'user')
     list_display_links = ('title',)
 
 
