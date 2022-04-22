@@ -21,7 +21,7 @@ class CityAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
     permission_classes = (IsAuthenticated, )
-    authentication_classes = (TokenAuthentication, )
+    # authentication_classes = (TokenAuthentication, )
 
 
 class CityAPIDetail(generics.RetrieveUpdateDestroyAPIView):
